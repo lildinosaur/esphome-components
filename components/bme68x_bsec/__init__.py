@@ -3,7 +3,7 @@ import esphome.config_validation as cv
 from esphome.components import i2c
 from esphome.const import CONF_ID, CONF_TEMPERATURE_OFFSET
 
-CODEOWNERS = ["@neffs"]
+CODEOWNERS = ["@lildinosaur"]
 DEPENDENCIES = ["i2c"]
 AUTO_LOAD = ["sensor", "text_sensor"]
 
@@ -67,9 +67,10 @@ async def to_code(config):
     cg.add_library(
         "BME68x Sensor library",
         "1.1.40407",
+        "https://github.com/BoschSensortec/Bosch-BME68x-Library.git",
     )
     cg.add_library(
         "BSEC2 Software Library",
-        None,
-        "https://github.com/boschsensortec/Bosch-BSEC2-Library.git#v1.4.2200",
+        "1.6.2400",
+        "https://github.com/boschsensortec/Bosch-BSEC2-Library.git",
     )
