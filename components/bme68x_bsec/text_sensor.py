@@ -19,7 +19,6 @@ CONFIG_SCHEMA = cv.Schema(
     }
 )
 
-
 async def setup_conf(config, key, hub):
     if key in config:
         conf = config[key]

@@ -6,15 +6,22 @@ from esphome.const import CONF_ID, CONF_TEMPERATURE_OFFSET
 CODEOWNERS = ["@lildinosaur"]
 DEPENDENCIES = ["i2c"]
 AUTO_LOAD = ["sensor", "text_sensor"]
+MULTI_CONF = True
 
 CONF_BME68X_BSEC_ID = "bme68x_bsec_id"
 CONF_IAQ_MODE = "iaq_mode"
 CONF_SAMPLE_RATE = "sample_rate"
 CONF_STATE_SAVE_INTERVAL = "state_save_interval"
 CONF_BSEC_CONFIGURATION = "bsec_configuration"
+CONF_TEMPERATURE_OFFSET = "temperature_offset"
 
 bme68x_bsec_ns = cg.esphome_ns.namespace("bme68x_bsec")
 
+IAQMode = bme68x_bsec_ns.enum("IAQMode")
+IAQ_MODE_OPTIONS = {
+    "STATIC": IAQMode.IAQ_MODE_STATIC,
+    "MOBILE": IAQMode.IAQ_MODE_MOBILE,
+}
 
 SampleRate = bme68x_bsec_ns.enum("SampleRate")
 SAMPLE_RATE_OPTIONS = {
@@ -30,6 +37,9 @@ CONFIG_SCHEMA = cv.Schema(
     {
         cv.GenerateID(): cv.declare_id(BME68xBSECComponent),
         cv.Optional(CONF_TEMPERATURE_OFFSET, default=0): cv.temperature,
+        cv.Optional(CONF_IAQ_MODE, default="STATIC"): cv.enum(
+                IAQ_MODE_OPTIONS, upper=True
+            ),
         cv.Optional(CONF_SAMPLE_RATE, default="LP"): cv.enum(
             SAMPLE_RATE_OPTIONS, upper=True
         ),
@@ -39,6 +49,13 @@ CONFIG_SCHEMA = cv.Schema(
         cv.Optional(CONF_BSEC_CONFIGURATION, default=""): cv.string,
     },
     cv.only_with_arduino,
+    cv.Any(
+        cv.only_on_esp8266,
+        cv.All(
+            cv.only_on_esp32,
+            esp32.only_on_variant(supported=[esp32.const.VARIANT_ESP32]),
+        ),
+    ),
 ).extend(i2c.i2c_device_schema(0x76))
 
 

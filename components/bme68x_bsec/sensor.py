@@ -118,15 +118,13 @@ CONFIG_SCHEMA = cv.Schema(
     }
 )
 
-
 async def setup_conf(config, key, hub):
     if key in config:
-        conf = config[key]
+        conf = config.get(key)
         sens = await sensor.new_sensor(conf)
         cg.add(getattr(hub, f"set_{key}_sensor")(sens))
         if CONF_SAMPLE_RATE in conf:
             cg.add(getattr(hub, f"set_{key}_sample_rate")(conf[CONF_SAMPLE_RATE]))
-
 
 async def to_code(config):
     hub = await cg.get_variable(config[CONF_BME68X_BSEC_ID])
