@@ -53,7 +53,7 @@ CONFIG_SCHEMA = cv.Schema(
             esp32.only_on_variant(supported=[esp32.const.VARIANT_ESP32]),
         ),
     ),
-).extend(i2c.i2c_device_schema(0x76))
+)
 
 
 async def to_code(config):
