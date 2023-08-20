@@ -37,9 +37,6 @@ CONFIG_SCHEMA = cv.Schema(
     {
         cv.GenerateID(): cv.declare_id(BME68xBSECComponent),
         cv.Optional(CONF_TEMPERATURE_OFFSET, default=0): cv.temperature,
-        cv.Optional(CONF_IAQ_MODE, default="STATIC"): cv.enum(
-                IAQ_MODE_OPTIONS, upper=True
-            ),
         cv.Optional(CONF_SAMPLE_RATE, default="LP"): cv.enum(
             SAMPLE_RATE_OPTIONS, upper=True
         ),
