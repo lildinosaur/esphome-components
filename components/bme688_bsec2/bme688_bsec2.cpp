@@ -1,4 +1,4 @@
-#include "bme68x_bsec.h"
+#include "bme688_bsec2.h"
 #include "esphome/core/log.h"
 #include "esphome/core/helpers.h"
 #include <string>

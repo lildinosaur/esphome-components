@@ -4,7 +4,7 @@ from esphome.components import text_sensor
 from esphome.const import CONF_IAQ_ACCURACY
 from . import BME68xBSECComponent, CONF_BME68X_BSEC_ID
 
-DEPENDENCIES = ["bme68x_bsec"]
+DEPENDENCIES = ["bme688_bsec2"]
 
 ICON_ACCURACY = "mdi:checkbox-marked-circle-outline"
 

@@ -15,7 +15,7 @@ CONF_STATE_SAVE_INTERVAL = "state_save_interval"
 CONF_BSEC_CONFIGURATION = "bsec_configuration"
 CONF_TEMPERATURE_OFFSET = "temperature_offset"
 
-bme68x_bsec_ns = cg.esphome_ns.namespace("bme68x_bsec")
+bme68x_bsec_ns = cg.esphome_ns.namespace("bme688_bsec2")
 
 IAQMode = bme68x_bsec_ns.enum("IAQMode")
 IAQ_MODE_OPTIONS = {

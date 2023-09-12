@@ -28,7 +28,7 @@ from . import (
     SAMPLE_RATE_OPTIONS,
 )
 
-DEPENDENCIES = ["bme68x_bsec"]
+DEPENDENCIES = ["bme688_bsec2"]
 
 CONF_IAQ = "iaq"
 CONF_IAQ_STATIC = "iaq_static"
