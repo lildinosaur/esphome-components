@@ -8,34 +8,34 @@ DEPENDENCIES = ["i2c"]
 AUTO_LOAD = ["sensor", "text_sensor"]
 MULTI_CONF = True
 
-CONF_BME68X_BSEC_ID = "bme68x_bsec_id"
+CONF_BME688_BSEC_ID = "bme688_bsec2_id"
 CONF_IAQ_MODE = "iaq_mode"
 CONF_SAMPLE_RATE = "sample_rate"
 CONF_STATE_SAVE_INTERVAL = "state_save_interval"
 CONF_BSEC_CONFIGURATION = "bsec_configuration"
 CONF_TEMPERATURE_OFFSET = "temperature_offset"
 
-bme68x_bsec_ns = cg.esphome_ns.namespace("bme688_bsec2")
+bme688_bsec2_ns = cg.esphome_ns.namespace("bme688_bsec2")
 
-IAQMode = bme68x_bsec_ns.enum("IAQMode")
+IAQMode = bme688_bsec2_ns.enum("IAQMode")
 IAQ_MODE_OPTIONS = {
     "STATIC": IAQMode.IAQ_MODE_STATIC,
     "MOBILE": IAQMode.IAQ_MODE_MOBILE,
 }
 
-SampleRate = bme68x_bsec_ns.enum("SampleRate")
+SampleRate = bme688_bsec2_ns.enum("SampleRate")
 SAMPLE_RATE_OPTIONS = {
     "LP": SampleRate.SAMPLE_RATE_LP,
     "ULP": SampleRate.SAMPLE_RATE_ULP,
 }
 
-BME68xBSECComponent = bme68x_bsec_ns.class_(
-    "BME68XBSECComponent", cg.Component, i2c.I2CDevice
+BME688BSECComponent = bme688_bsec2_ns.class_(
+    "BME688BSECComponent", cg.Component, i2c.I2CDevice
 )
 
 CONFIG_SCHEMA = cv.Schema(
     {
-        cv.GenerateID(): cv.declare_id(BME68xBSECComponent),
+        cv.GenerateID(): cv.declare_id(BME688BSECComponent),
         cv.Optional(CONF_TEMPERATURE_OFFSET, default=0): cv.temperature,
         cv.Optional(CONF_SAMPLE_RATE, default="LP"): cv.enum(
             SAMPLE_RATE_OPTIONS, upper=True
@@ -72,7 +72,7 @@ async def to_code(config):
         # We can't call set_config_() with this array directly, because we don't
         # have a pointer in this case.
         # Instead we use a define, and handle it .cpp
-        cg.add_define("BME68X_BSEC_CONFIGURATION", temp)
+        cg.add_define("bme688_bsec2_CONFIGURATION", temp)
 
     # Although this component does not use SPI, the BSEC library requires the SPI library
     cg.add_library("SPI", None)

@@ -22,8 +22,8 @@ from esphome.const import (
     ICON_WATER_PERCENT,
 )
 from . import (
-    BME68xBSECComponent,
-    CONF_BME68X_BSEC_ID,
+    BME688BSECComponent,
+    CONF_BME688_BSEC_ID,
     CONF_SAMPLE_RATE,
     SAMPLE_RATE_OPTIONS,
 )
@@ -52,7 +52,7 @@ TYPES = [
 
 CONFIG_SCHEMA = cv.Schema(
     {
-        cv.GenerateID(CONF_BME68X_BSEC_ID): cv.use_id(BME68xBSECComponent),
+        cv.GenerateID(CONF_BME688_BSEC_ID): cv.use_id(BME688BSECComponent),
         cv.Optional(CONF_TEMPERATURE): sensor.sensor_schema(
             unit_of_measurement=UNIT_CELSIUS,
             icon=ICON_THERMOMETER,
@@ -127,6 +127,6 @@ async def setup_conf(config, key, hub):
             cg.add(getattr(hub, f"set_{key}_sample_rate")(conf[CONF_SAMPLE_RATE]))
 
 async def to_code(config):
-    hub = await cg.get_variable(config[CONF_BME68X_BSEC_ID])
+    hub = await cg.get_variable(config[CONF_BME688_BSEC_ID])
     for key in TYPES:
         await setup_conf(config, key, hub)

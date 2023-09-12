@@ -13,7 +13,7 @@
 #endif
 
 namespace esphome {
-namespace bme68x_bsec {
+namespace bme688_bsec2 {
 #ifdef USE_BSEC2
 
 enum SampleRate {
@@ -22,9 +22,9 @@ enum SampleRate {
   SAMPLE_RATE_DEFAULT = 2,
 };
 
-#define BME68X_BSEC_SAMPLE_RATE_LOG(r) (r == SAMPLE_RATE_DEFAULT ? "Default" : (r == SAMPLE_RATE_ULP ? "ULP" : "LP"))
+#define bme688_bsec2_SAMPLE_RATE_LOG(r) (r == SAMPLE_RATE_DEFAULT ? "Default" : (r == SAMPLE_RATE_ULP ? "ULP" : "LP"))
 
-class BME68XBSECComponent : public Component, public i2c::I2CDevice {
+class BME688BSECComponent : public Component, public i2c::I2CDevice {
  public:
   void set_temperature_offset(float offset) { this->temperature_offset_ = offset; }
   void set_state_save_interval(uint32_t interval) { this->state_save_interval_ms_ = interval; }
@@ -45,7 +45,7 @@ class BME68XBSECComponent : public Component, public i2c::I2CDevice {
   void set_co2_equivalent_sensor(sensor::Sensor *sensor) { this->co2_equivalent_sensor_ = sensor; }
   void set_breath_voc_equivalent_sensor(sensor::Sensor *sensor) { this->breath_voc_equivalent_sensor_ = sensor; }
 
-  static BME68XBSECComponent *instance;
+  static BME688BSECComponent *instance;
   static int8_t read_bytes_wrapper(uint8_t a_register, uint8_t *data, uint32_t len, void *intfPtr);
   static int8_t write_bytes_wrapper(uint8_t a_register, const uint8_t *data, uint32_t len, void *intfPtr);
   static void delay_us(uint32_t period, void *intfPtr);
@@ -111,5 +111,5 @@ class BME68XBSECComponent : public Component, public i2c::I2CDevice {
   sensor::Sensor *breath_voc_equivalent_sensor_{nullptr};
 };
 #endif
-}  // namespace bme68x_bsec
+}  // namespace bme688_bsec2
 }  // namespace esphome
