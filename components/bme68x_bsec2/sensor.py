@@ -22,13 +22,13 @@ from esphome.const import (
     ICON_WATER_PERCENT,
 )
 from . import (
-    BME688BSECComponent,
-    CONF_BME688_BSEC_ID,
+    BME68xBSECComponent,
+    CONF_BME68X_BSEC_ID,
     CONF_SAMPLE_RATE,
     SAMPLE_RATE_OPTIONS,
 )
 
-DEPENDENCIES = ["bme688_bsec2"]
+DEPENDENCIES = ["bme68x_bsec2"]
 
 CONF_IAQ = "iaq"
 CONF_IAQ_STATIC = "iaq_static"
@@ -52,7 +52,7 @@ TYPES = [
 
 CONFIG_SCHEMA = cv.Schema(
     {
-        cv.GenerateID(CONF_BME688_BSEC_ID): cv.use_id(BME688BSECComponent),
+        cv.GenerateID(CONF_BME68X_BSEC_ID): cv.use_id(BME68xBSECComponent),
         cv.Optional(CONF_TEMPERATURE): sensor.sensor_schema(
             unit_of_measurement=UNIT_CELSIUS,
             icon=ICON_THERMOMETER,
@@ -118,15 +118,17 @@ CONFIG_SCHEMA = cv.Schema(
     }
 )
 
+
 async def setup_conf(config, key, hub):
     if key in config:
-        conf = config.get(key)
+        conf = config[key]
         sens = await sensor.new_sensor(conf)
         cg.add(getattr(hub, f"set_{key}_sensor")(sens))
         if CONF_SAMPLE_RATE in conf:
             cg.add(getattr(hub, f"set_{key}_sample_rate")(conf[CONF_SAMPLE_RATE]))
 
+
 async def to_code(config):
-    hub = await cg.get_variable(config[CONF_BME688_BSEC_ID])
+    hub = await cg.get_variable(config[CONF_BME68X_BSEC_ID])
     for key in TYPES:
         await setup_conf(config, key, hub)
