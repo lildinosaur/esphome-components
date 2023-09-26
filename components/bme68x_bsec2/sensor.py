@@ -45,7 +45,7 @@ TYPES = [
     CONF_GAS_RESISTANCE,
     CONF_IAQ,
     CONF_IAQ_STATIC,
-    CONF_IAQ_ACCURACY,
+    CONF_ACCURACY,
     CONF_CO2_EQUIVALENT,
     CONF_BREATH_VOC_EQUIVALENT,
 ]
@@ -98,7 +98,7 @@ CONFIG_SCHEMA = cv.Schema(
             accuracy_decimals=0,
             state_class=STATE_CLASS_MEASUREMENT,
         ),
-        cv.Optional(CONF_IAQ_ACCURACY): sensor.sensor_schema(
+        cv.Optional(CONF_ACCURACY): sensor.sensor_schema(
             icon=ICON_ACCURACY,
             accuracy_decimals=0,
             state_class=STATE_CLASS_MEASUREMENT,
