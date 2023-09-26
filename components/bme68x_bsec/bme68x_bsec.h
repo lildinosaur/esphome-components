@@ -54,7 +54,7 @@ class BME68XBSECComponent : public Component, public i2c::I2CDevice {
   static std::vector<BME68XBSECComponent *> instances;
   static int8_t read_bytes_wrapper(uint8_t devid, uint8_t a_register, uint8_t *data, uint16_t len);
   static int8_t write_bytes_wrapper(uint8_t devid, uint8_t a_register, uint8_t *data, uint16_t len);
-  static void delay_ms(uint32_t period);
+  static void delay_us(uint32_t period);
 
   void setup() override;
   void dump_config() override;
@@ -91,7 +91,7 @@ class BME68XBSECComponent : public Component, public i2c::I2CDevice {
   static uint8_t work_buffer_[BSEC_MAX_WORKBUFFER_SIZE];
   struct bme68x_dev bme68x_;
   bsec_library_return_t bsec_status_{BSEC_OK};
-  int8_t bme68x_status_{bme68x_OK};
+  int8_t bme68x_status_{BME68X_OK};
 
   int64_t last_time_ms_{0};
   uint32_t millis_overflow_counter_{0};
