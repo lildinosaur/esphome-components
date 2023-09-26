@@ -89,9 +89,9 @@ class BME68XBSECComponent : public Component, public i2c::I2CDevice {
   void queue_push_(std::function<void()> &&f) { this->queue_.push(std::move(f)); }
 
   static uint8_t work_buffer_[BSEC_MAX_WORKBUFFER_SIZE];
-  struct BME68X_dev BME68X_;
+  struct bme68x_dev bme68x_;
   bsec_library_return_t bsec_status_{BSEC_OK};
-  int8_t BME68X_status_{BME68X_OK};
+  int8_t bme68x_status_{bme68x_OK};
 
   int64_t last_time_ms_{0};
   uint32_t millis_overflow_counter_{0};
@@ -104,7 +104,7 @@ class BME68XBSECComponent : public Component, public i2c::I2CDevice {
   ESPPreferenceObject bsec_state_;
   uint32_t state_save_interval_ms_{21600000};  // 6 hours - 4 times a day
   uint32_t last_state_save_ms_ = 0;
-  bsec_bme_settings_t BME68X_settings_;
+  bsec_bme_settings_t bme68x_settings_;
 
   std::string device_id_;
   float temperature_offset_{0};
@@ -126,5 +126,5 @@ class BME68XBSECComponent : public Component, public i2c::I2CDevice {
   sensor::Sensor *breath_voc_equivalent_sensor_{nullptr};
 };
 #endif
-}  // namespace BME68X_bsec
+}  // namespace bme68x_bsec
 }  // namespace esphome
