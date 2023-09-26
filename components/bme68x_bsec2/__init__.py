@@ -28,7 +28,7 @@ BME68xBSECComponent = bme68x_bsec_ns.class_(
 CONFIG_SCHEMA = cv.Schema(
     {
         cv.GenerateID(): cv.declare_id(BME68xBSECComponent),
-        cv.Optional(CONF_OFFSET, default=0): cv.temperature,
+        cv.Optional(CONF_TEMPERATURE_OFFSET, default=0): cv.temperature,
         cv.Optional(CONF_SAMPLE_RATE, default="LP"): cv.enum(
             SAMPLE_RATE_OPTIONS, upper=True
         ),
@@ -46,7 +46,7 @@ async def to_code(config):
     await cg.register_component(var, config)
     await i2c.register_i2c_device(var, config)
 
-    cg.add(var.set_temperature_offset(config[CONF_OFFSET]))
+    cg.add(var.set_temperature_offset(config[CONF_TEMPERATURE_OFFSET]))
     cg.add(var.set_sample_rate(config[CONF_SAMPLE_RATE]))
     cg.add(
         var.set_state_save_interval(config[CONF_STATE_SAVE_INTERVAL].total_milliseconds)
