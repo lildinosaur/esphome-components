@@ -55,7 +55,7 @@ void BME68XBSECComponent::setup() {
 }
 
 void BME68XBSECComponent::set_config_() {
-  if (this->sample_rate_ == SAMPLE_RATE_ULP) {
+  /*if (this->sample_rate_ == SAMPLE_RATE_ULP) {
     const uint8_t config[] = {
 #include "config/generic_33v_300s_28d/bsec_iaq.txt"
     };
@@ -67,7 +67,7 @@ void BME68XBSECComponent::set_config_() {
     };
     this->bsec_status_ =
         bsec_set_configuration(config, BSEC_MAX_PROPERTY_BLOB_SIZE, this->work_buffer_, sizeof(this->work_buffer_));
-  }
+  }*/
 }
 
 float BME68XBSECComponent::calc_sensor_sample_rate_(SampleRate sample_rate) {
