@@ -10,6 +10,7 @@ AUTO_LOAD = ["sensor", "text_sensor"]
 CONF_BME68X_BSEC_ID = "bme68x_bsec_id"
 CONF_IAQ_MODE = "iaq_mode"
 CONF_SAMPLE_RATE = "sample_rate"
+CONF_TEMPERATURE_OFFSET = "temperature_offset"
 CONF_STATE_SAVE_INTERVAL = "state_save_interval"
 CONF_BSEC_CONFIGURATION = "bsec_configuration"
 
