@@ -14,7 +14,7 @@ CONF_TEMPERATURE_OFFSET = "temperature_offset"
 CONF_STATE_SAVE_INTERVAL = "state_save_interval"
 CONF_BSEC_CONFIGURATION = "bsec_configuration"
 
-bme68x_bsec_ns = cg.esphome_ns.namespace("bme68x_bsec2")
+bme68x_bsec_ns = cg.esphome_ns.namespace("bme68x_bsec")
 
 SampleRate = bme68x_bsec_ns.enum("SampleRate")
 SAMPLE_RATE_OPTIONS = {
@@ -71,6 +71,6 @@ async def to_code(config):
     )
     cg.add_library(
         "BSEC2 Software Library",
-        None,
-        "https://github.com/boschsensortec/Bosch-BSEC2-Library.git#v1.4.2200",
+        "1.6.2400"
+        "https://github.com/boschsensortec/Bosch-BSEC2-Library.git",
     )

@@ -6,7 +6,7 @@
 namespace esphome {
 namespace bme68x_bsec {
 #ifdef USE_BSEC2
-static const char *const TAG = "bme68x_bsec2.sensor";
+static const char *const TAG = "bme68x_bsec.sensor";
 
 #ifdef BME68X_BSEC_CONFIGURATION
 static const uint8_t bsec_configuration[] = BME68X_BSEC_CONFIGURATION;
