@@ -4,7 +4,6 @@ from esphome.components import sensor
 from esphome.const import (
     CONF_GAS_RESISTANCE,
     CONF_HUMIDITY,
-    CONF_ACCURACY,
     CONF_PRESSURE,
     CONF_TEMPERATURE,
     DEVICE_CLASS_HUMIDITY,
@@ -32,6 +31,7 @@ DEPENDENCIES = ["bme68x_bsec2"]
 
 CONF_IAQ = "iaq"
 CONF_IAQ_STATIC = "iaq_static"
+CONF_IAQ_ACCURACY = "iaq_accuracy"
 CONF_CO2_EQUIVALENT = "co2_equivalent"
 CONF_BREATH_VOC_EQUIVALENT = "breath_voc_equivalent"
 UNIT_IAQ = "IAQ"
@@ -45,7 +45,7 @@ TYPES = [
     CONF_GAS_RESISTANCE,
     CONF_IAQ,
     CONF_IAQ_STATIC,
-    CONF_ACCURACY,
+    CONF_IAQ_ACCURACY,
     CONF_CO2_EQUIVALENT,
     CONF_BREATH_VOC_EQUIVALENT,
 ]
@@ -98,7 +98,7 @@ CONFIG_SCHEMA = cv.Schema(
             accuracy_decimals=0,
             state_class=STATE_CLASS_MEASUREMENT,
         ),
-        cv.Optional(CONF_ACCURACY): sensor.sensor_schema(
+        cv.Optional(CONF_IAQ_ACCURACY): sensor.sensor_schema(
             icon=ICON_ACCURACY,
             accuracy_decimals=0,
             state_class=STATE_CLASS_MEASUREMENT,
