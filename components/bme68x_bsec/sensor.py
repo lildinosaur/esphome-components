@@ -7,7 +7,7 @@ from esphome.const import (
     CONF_PRESSURE,
     CONF_TEMPERATURE,
     DEVICE_CLASS_HUMIDITY,
-    DEVICE_CLASS_PRESSURE,
+    DEVICE_CLASS_ATMOSPHERIC_PRESSURE,
     DEVICE_CLASS_TEMPERATURE,
     STATE_CLASS_MEASUREMENT,
     UNIT_CELSIUS,
@@ -31,7 +31,6 @@ DEPENDENCIES = ["bme68x_bsec"]
 
 CONF_IAQ = "iaq"
 CONF_IAQ_STATIC = "iaq_static"
-CONF_IAQ_ACCURACY = "iaq_accuracy"
 CONF_CO2_EQUIVALENT = "co2_equivalent"
 CONF_BREATH_VOC_EQUIVALENT = "breath_voc_equivalent"
 UNIT_IAQ = "IAQ"
@@ -45,7 +44,6 @@ TYPES = [
     CONF_GAS_RESISTANCE,
     CONF_IAQ,
     CONF_IAQ_STATIC,
-    CONF_IAQ_ACCURACY,
     CONF_CO2_EQUIVALENT,
     CONF_BREATH_VOC_EQUIVALENT,
 ]
@@ -66,7 +64,7 @@ CONFIG_SCHEMA = cv.Schema(
             unit_of_measurement=UNIT_HECTOPASCAL,
             icon=ICON_GAUGE,
             accuracy_decimals=1,
-            device_class=DEVICE_CLASS_PRESSURE,
+            device_class=DEVICE_CLASS_ATMOSPHERIC_PRESSURE,
             state_class=STATE_CLASS_MEASUREMENT,
         ).extend(
             {cv.Optional(CONF_SAMPLE_RATE): cv.enum(SAMPLE_RATE_OPTIONS, upper=True)}
@@ -95,11 +93,6 @@ CONFIG_SCHEMA = cv.Schema(
         cv.Optional(CONF_IAQ_STATIC): sensor.sensor_schema(
             unit_of_measurement=UNIT_IAQ,
             icon=ICON_GAUGE,
-            accuracy_decimals=0,
-            state_class=STATE_CLASS_MEASUREMENT,
-        ),
-        cv.Optional(CONF_IAQ_ACCURACY): sensor.sensor_schema(
-            icon=ICON_ACCURACY,
             accuracy_decimals=0,
             state_class=STATE_CLASS_MEASUREMENT,
         ),

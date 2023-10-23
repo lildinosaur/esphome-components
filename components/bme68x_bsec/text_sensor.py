@@ -6,16 +6,12 @@ from . import BME68xBSECComponent, CONF_BME68X_BSEC_ID
 DEPENDENCIES = ["bme68x_bsec"]
 
 ICON_ACCURACY = "mdi:checkbox-marked-circle-outline"
-CONF_IAQ_ACCURACY = "iaq_accuracy"
 
-TYPES = [CONF_IAQ_ACCURACY]
+TYPES = []
 
 CONFIG_SCHEMA = cv.Schema(
     {
         cv.GenerateID(CONF_BME68X_BSEC_ID): cv.use_id(BME68xBSECComponent),
-        cv.Optional(CONF_IAQ_ACCURACY): text_sensor.text_sensor_schema(
-            icon=ICON_ACCURACY
-        ),
     }
 )
 
